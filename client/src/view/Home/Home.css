@@ -1,0 +1,19 @@
+.home {
+    height: 100%;
+    width: calc(100% - 50px);
+    display: flex;
+    margin: 0 auto;
+}
+.dialogs{
+    width: 20%;
+    min-width: 400px;
+    height: 100%;
+}
+.dialog__list{
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - 170px);
+    padding: 15px 0;
+    /* overflow: scroll; */
+    border-radius: 10px;
+}

@@ -1,0 +1,48 @@
+.settings{
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.4);
+    position: fixed;
+    left: 0;
+    top: 0;
+    display: flex;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.5s all;
+}
+.settings.active{
+    opacity: 1;
+    pointer-events: all;
+}
+.settings__content{
+    margin: auto;
+    width: 400px;
+    height: 600px;
+    border-radius: 25px;
+    display: flex;
+    transform: scale( 0);
+    transition:  0.2s all;
+    flex-direction: column;
+}
+
+.settings__content.active{
+    transform: scale(1);
+}
+.settings__content--title{
+    font-family: 'Roboto';
+    font-size: 24px;
+    margin: 25px auto 0 auto;
+
+}
+.settings__content--li {
+    margin: 25px auto 0 auto;
+    display: flex;
+    align-items: center;
+    height: 30px;
+    width: 330px;
+    justify-content: space-between;
+}
+.settings__content--li p{
+    font-family: 'Roboto';
+    font-size: 16px;
+}

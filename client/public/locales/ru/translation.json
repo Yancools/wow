@@ -1,0 +1,58 @@
+{
+    "menu": [
+        {
+            "id": 1,
+            "text": "Профиль",
+            "icon": "profileIcon"
+        },
+        
+        {
+            "id": 2,
+            "text": "Настройки",
+            "icon": "settingsIcon"
+        },
+        
+        {
+            "id": 3,
+            "text": "Выйти",
+            "icon": "logoutIcon"
+        }
+    ],
+
+    "profile": {
+        "title": "Профиль"
+    },
+    
+    "settings": {
+        "title": "Настройки",
+        "switch": [
+            {
+                "id": 1,
+                "text": "Смена языка русский/английский"
+            },
+            {
+                "id": 2,
+                "text": "Смена темы светлая/темная"
+            }
+        ]
+    },
+
+    "authorization": {
+        "title": "Авторизация",
+        "remember": "Запомнить",
+        "button": "Войти",
+        "noAcc": "Нет аккаунта?",
+        "register": "Зарегистрироваться",
+        "login": "Логин",
+        "password": "Пароль",
+        "forget": "Забыли пароль?"
+    },
+    "register": {
+        "title": "Регистрация",
+        "button": "Зарегистрироваться",
+        "login": "Логин",
+        "password": "Пароль",
+        "firstname": "Имя",
+        "lastname": "Фамилия"
+    }
+}

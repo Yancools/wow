@@ -1,0 +1,34 @@
+.profile{
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.4);
+    position: fixed;
+    left: 0;
+    top: 0;
+    display: flex;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.5s;
+}
+.profile.active{
+    opacity: 1;
+    pointer-events: all;
+}
+.profile__content{
+    margin: auto;
+    width: 400px;
+    height: 600px;
+    border-radius: 25px;
+    display: flex;
+    transform: scale( 0);
+    transition:  0.4s all;
+}
+
+.profile__content.active{
+    transform: scale(1);
+}
+.profile__content--title{
+    font-family: 'Roboto';
+    font-size: 24px;
+    margin: 25px auto 0 auto;
+}

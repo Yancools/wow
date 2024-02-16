@@ -1,0 +1,269 @@
+:root {
+    --black: #000;
+    --dark--purpleLight: #4c3f91;
+    --dark--purpleDark: #2c2453;
+    --text--dark:#161229;
+    --white: #FFFAF0;
+    --gray: #DCDCDC;
+    --dark: rgba(0, 0, 0, 0.4);
+    --transition: 0.6s all;
+}
+
+.layout {
+    height: 100%;
+    width: 100%;
+}
+.layout.dark{
+    background-color: var(--dark--purpleDark);
+    color: var(--white);
+}
+.layout.light{
+    background-color: var(--gray);
+    color: var(--black);
+}
+
+
+.layout.light .dialog__list{
+    background-color: var(--white);
+}
+.layout.dark .dialog__list{
+    background-color: var(--dark--purpleLight);
+}
+
+
+.layout.light .menu{
+    background-color: var(--white);
+}
+.layout.dark .menu {
+    background-color: var(--dark--purpleLight);
+}
+.layout.light .navbar__item:hover,
+.layout.dark .navbar__item:hover{
+    background-color: var(--dark);
+    transition: var(--transition);
+}
+
+.layout.dark .profileIcon {
+    background: url("../../icons/profileDark.png")
+}
+.layout.light .profileIcon {
+    background: url("../../icons/profileLight.png")
+}
+.layout.dark .settingsIcon {
+    background: url("../../icons/settingsDark.png")
+}
+.layout.light .settingsIcon {
+    background: url("../../icons/settingsLight.png")
+}
+.layout.light .logoutIcon {
+    background: url("../../icons/logoutLight.png")
+}
+.layout.dark .logoutIcon {
+    background: url("../../icons/logoutDark.png")
+}
+.layout.light .profileIcon,
+.layout.dark .profileIcon,
+.layout.light .settingsIcon,
+.layout.dark .logoutIcon,
+.layout.light .logoutIcon,
+.layout.dark .settingsIcon {
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.layout.light .search {
+    background-color: var(--white);
+    color: var(--black);
+}
+.layout.light .menu__button {
+    color: var(--black);
+}
+.layout.dark .menu__button {
+    color: var(--white);
+}
+
+.layout.light .content__header--logout {
+    color: var(--black);
+}
+.layout.dark .content__header--logout {
+    color: var(--white);
+}
+.layout.light .content__header--logout:hover,
+.layout.dark .content__header--logout:hover{
+    background-color: var(--dark);
+    transition: var(--transition);
+}
+.layout.dark .burger button,
+.layout.dark .burger::after,
+.layout.dark .burger::before {
+    background-color: var(--white);
+}
+.layout.light .burger button,
+.layout.light .burger::after,
+.layout.light .burger::before {
+    background-color: var(--black);
+}
+
+.layout.light .burger:hover {
+    background-color: var(--white);
+}
+.layout.dark .burger:hover {
+    background-color: var(--dark--purpleLight);
+}
+
+
+.layout.dark .search {
+    background-color: var(--dark--purpleLight);
+    color: var(--white);
+}
+.layout.light .search {
+    background-color: var(--white);
+    color: var(--black);
+}
+
+
+.layout.dark .chat__content{
+    background-color: var(--dark--purpleLight);
+}
+.layout.light .chat__content{
+    background-color: var(--white);
+}
+
+.layout.dark .chat__footer--choose{
+    background: url(../../icons/chooseDark.png);
+}
+
+.layout.light .chat__footer--choose{
+    background: url(../../icons/chooseLight.png);
+}
+.layout.dark .chat__footer--smile{
+    background: url(../../icons/smileDark.png);
+}
+
+.layout.light .chat__footer--smile{
+    background: url(../../icons/smileLight.png);
+}
+.layout.dark .chat__footer--send{
+    background: url(../../icons/sendDark.png);
+}
+
+.layout.light .chat__footer--send{
+    background: url(../../icons/sendLight.png);
+}
+.layout.dark .chat__footer--choose,
+.layout.light .chat__footer--choose,
+.layout.dark .chat__footer--smile,
+.layout.light .chat__footer--smile,
+.layout.dark .chat__footer--send,
+.layout.light .chat__footer--send{
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: var(--transition);
+}
+
+.layout.light .chat__header{
+    background-color: var(--white);
+}
+.layout.dark .chat__header{
+    background-color: var(--dark--purpleLight);
+}
+.layout.dark .chat__footer{
+    background-color: var(--dark--purpleLight);
+}
+.layout.light .chat__footer{
+    background-color: var(--white);
+}
+.layout.dark .chat__footer--input{
+    background-color: var(--dark--purpleLight);
+    color: var(--white);
+}
+.layout.light .chat__footer--input{
+    background-color: var(--white);
+    color: var(--black);
+}
+.layout .chat__footer--choose:hover,
+.layout .chat__footer--smile:hover,
+.layout .chat__footer--send:hover{
+    background-color: var(--dark);
+}
+
+.layout.light .switch-btn{
+    background-color: var(--gray);
+}
+.layout.dark .switch-btn{
+    background-color: var(--dark--purpleDark);
+}
+.layout.light .switch-on,
+.layout.dark .switch-on{
+    background-color: #118c4e;
+}
+.layout.light .settings__content{
+    background-color: var(--white);
+}
+.layout.dark .settings__content{
+    background-color: var(--dark--purpleLight);
+}
+
+.layout.light .profile__content{
+    background-color: var(--white);
+}
+.layout.dark .profile__content{
+    background-color: var(--dark--purpleLight);
+}
+
+.layout.light .auth {
+    background-color: var(--white);
+}
+.layout.dark .auth {
+    background-color: var(--dark--purpleLight);
+}
+.layout.light .register {
+    background-color: var(--white);
+}
+.layout.dark .register {
+    background-color: var(--dark--purpleLight);
+}
+.layout.light .moveBack span::after,
+.layout.light .moveBack span::before,
+.layout.light .moveBack span {
+    background-color: var(--white);
+}
+
+.layout.dark .moveBack span::after,
+.layout.dark .moveBack span::before,
+.layout.dark .moveBack span {
+    background-color: var(--dark--purpleLight);
+}
+
+.layout.light .auth__form--input label,
+.layout.light .auth__form--input input,
+.layout.light .auth__form--forget,
+.layout.light .register__form--input input,
+.layout.light .register__form--input label,
+.layout.light .auth__form--forget label a,
+.layout.light .auth__form--register,
+.layout.light .auth__form--register a{
+    color: var(--black);
+}
+
+
+.layout.dark .auth__form--input label,
+.layout.dark .auth__form--input input,
+.layout.dark .auth__form--forget,
+.layout.dark .register__form--input input,
+.layout.dark .auth__form--forget label a,
+.layout.dark .register__form--input label,
+.layout.dark .auth__form--register,
+.layout.dark .auth__form--register a{
+    color: var(--white);
+}
+
+.layout.light .auth__form--input,
+.layout.light .register__form--input {
+    border-bottom: 2px solid var(--black);
+}
+
+.layout.dark .auth__form--input,
+.layout.dark .register__form--input {
+    border-bottom: 2px solid var(--white);
+}

@@ -1,0 +1,15 @@
+
+.search{
+    border: none;
+    height: 50px;
+    width: calc(100% - 40px - 40px);
+    color: #000;
+    border-radius: 10px;
+    padding: 0 10px 0 10px;
+    font-family: 'Roboto';
+    font-size: 16px;
+}
+.search:focus{
+    outline: none;
+    font-family: 'Roboto';
+}

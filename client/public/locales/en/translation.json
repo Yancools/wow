@@ -1,0 +1,60 @@
+{
+    "menu": [
+        {
+            "id": 1,
+            "text": "Profile",
+            "icon": "profileIcon"
+        },
+        
+        {
+            "id": 2,
+            "text": "Settings",
+            "icon": "settingsIcon"
+        },
+        
+        {
+            "id": 3,
+            "text": "Logout",
+            "icon": "logoutIcon"
+        }
+    ],
+    
+    "profile": {
+        "title": "Profile"
+    },
+
+    "settings": {
+        "title": "Settings",
+        "switch": [
+            {
+                "id": 1,
+                "text": "Change language russian/english"
+            },
+            
+            {
+                "id": 2,
+                "text": "Change theme light/dark"
+            }
+        ]
+    },
+
+    "authorization": {
+        "title": "Sign in",
+        "remember": "Remember me",
+        "button": "Log in",
+        "noAcc": "Don't have a account?",
+        "register": "Register",
+        "login": "Login",
+        "password": "Password",
+        "forget": "Forget password?"
+    },
+
+    "register": {
+        "title": "Registration",
+        "button": "Sign up",
+        "login": "Login",
+        "password": "Password",
+        "firstname": "Firstname",
+        "lastname": "Lastname"
+    }
+}
