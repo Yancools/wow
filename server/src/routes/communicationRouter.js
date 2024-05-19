@@ -62,7 +62,6 @@ router.post('/deleteChat',
 router.post('/createMessage',
     authMiddleware, 
     body('chatId').notEmpty(),
-    body('content').notEmpty(),
     communicationController.createMessage
 )
 router.post('/deleteMessage',

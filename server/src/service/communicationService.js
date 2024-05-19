@@ -385,7 +385,7 @@ class CommunicationService {
                 },
                 attributes: ['firstname', 'lastname', 'photo', 'nickname']
             },
-            attributes: ['content', 'isRead', 'time', 'date']
+            attributes: ['content', 'isRead', 'time', 'date', 'file']
         })
         return messages
     }
@@ -415,7 +415,7 @@ class CommunicationService {
         }
         return true
     }
-    async createMessage(content, userId, chatId){
+    async createMessage(content, userId, chatId, file){
         const chat = await Chat.findOne({
             where: {
                 id: chatId
@@ -436,7 +436,8 @@ class CommunicationService {
             chatId: chatId,
             content: content,
             date: Year + '-' + Month + '-' + Day,
-            time: Hour + ':' + Minutes + ':' + Seconds
+            time: Hour + ':' + Minutes + ':' + Seconds,
+            file: file
         })
         try {
             await Chat.findAll({

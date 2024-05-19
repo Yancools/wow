@@ -89,7 +89,13 @@ class communicationController {
             const userId = req.user.id
             const {chatId} = req.body
             const {photo} = req.files
-            let fileName = uuid.v4() + ".jpg"
+            const title = photo.name.lastIndexOf('.');
+            const fileType = photo.name.substring(title + 1);
+            const types = ['svg', 'jpg', 'png']
+            if (!types.includes(fileType)){
+                return next(ApiError.badRequest('Допустимые форматы изображений .svg, .png, .jpg'))
+            }
+            let fileName = uuid.v4() + `.${fileType}`
             photo.mv(path.resolve(__dirname, '..', 'static', fileName))
             await communicationService.editConversationPhoto(fileName, chatId, userId)
             return res.status(200).send()
@@ -187,11 +193,18 @@ class communicationController {
             }
             const userId = req.user.id
             const {content, chatId} = req.body
-            await communicationService.createMessage(content, userId, chatId)
+            const {file} = req.files
+            const title = file.name.lastIndexOf('.');
+            const fileType = file.name.substring(title + 1);
+            let fileName = uuid.v4() + `.${fileType}`
+            file.mv(path.resolve(__dirname, '..', 'static', fileName))
+
+            await communicationService.createMessage(content, userId, chatId, fileName)
             return res.status(200).send()
         } catch (error) {
             next(error)
         }
     }
+
 }
 module.exports = new communicationController()

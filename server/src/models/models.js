@@ -64,8 +64,7 @@ const Message = database.define('messages', {
         allowNull: false
     },
     content: {
-        type: DataTypes.STRING,
-        allowNull:false
+        type: DataTypes.STRING
     },
     time: {
         type: DataTypes.TIME,
@@ -79,6 +78,9 @@ const Message = database.define('messages', {
     date:{
         type: DataTypes.DATE,
         allowNull:false,
+    },
+    file: {
+        type: DataTypes.STRING
     }
 });
 const Chat = database.define('chats', {
