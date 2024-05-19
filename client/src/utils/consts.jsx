@@ -1,0 +1,21 @@
+export const SERVER_API = 'http://localhost:5000/'
+export const CLIENT_API = 'https://corp.ru/'
+// URL
+export const REGISTRATION_URL = 'api/user/registration'
+export const LOGIN_URL = 'api/user/login'
+export const LOGOUT_URL = 'api/user/logout'
+export const REFRESH_URL = 'api/user/refresh'
+export const USERDATA_URL = 'api/user/data/'
+export const CHANGEUSERDATA_URL = 'api/user/changeUserData'
+export const CHANGELOGIN_URL = 'api/user/changeLogin'
+export const CHANGEPASSWORD_URL = 'api/user/changePassword'
+export const SEARCHUSER_URL = 'api/user/searchUser'
+// ROUTES
+export const REGISTRATION_ROUTE = '/registration'
+export const AUTHORIZATION_ROUTE = '/auth'
+export const PROFILE_ROUTE = '/:nickname'
+export const SETTINGS_ROUTE = '/settings'
+export const EDITPROFILE_ROUTE= '/edit'
+export const ERROR_ROUTE = '/error'
+export const DEFAULT_ROUTE = '/'
+

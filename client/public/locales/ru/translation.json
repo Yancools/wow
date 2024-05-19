@@ -2,7 +2,7 @@
     "menu": [
         {
             "id": 1,
-            "text": "Профиль",
+            "text": "Мой профиль",
             "icon": "profileIcon"
         },
         
@@ -20,7 +20,13 @@
     ],
 
     "profile": {
-        "title": "Профиль"
+        "title": "Профиль",
+        "edit": "Редактировать профиль",
+        "send": "Написать сообщение",
+        "firstname": "Имя",
+        "lastname": "Фамилия",
+        "status": "Статус:",
+        "gender": "Пол:"
     },
     
     "settings": {
@@ -39,7 +45,6 @@
 
     "authorization": {
         "title": "Авторизация",
-        "remember": "Запомнить",
         "button": "Войти",
         "noAcc": "Нет аккаунта?",
         "register": "Зарегистрироваться",
@@ -53,6 +58,24 @@
         "login": "Логин",
         "password": "Пароль",
         "firstname": "Имя",
-        "lastname": "Фамилия"
+        "lastname": "Фамилия",
+        "man": "Мужчина",
+        "gender": "Пол",
+        "woman": "Женщина",
+        "haveAcc": "Есть аккаунт?",
+        "authorization": "Авторизация"
+    },
+    "search": "Поиск",
+    "edit" : {
+        "firstname": "Имя:",
+        "lastname": "Фамилия:",
+        "status": "Статус:",
+        "genderTitle": "Пол:",
+        "gender": "Пол",
+        "man": "Мужчина",
+        "woman": "Женщина",
+        "nickname": "Никнейм:",
+        "button": "Отправить",
+        "success" : "Данные успешно изменены"
     }
 }

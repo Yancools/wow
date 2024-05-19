@@ -15,7 +15,7 @@ i18next
     .use(initReactI18next)
     .init({
         fallbackLng: lang,
-        debug: true,
+        debug: false,
         detection:{
             order: ['queryString','cookie'],
             cache: ['cookie']

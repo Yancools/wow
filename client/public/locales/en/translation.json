@@ -2,7 +2,7 @@
     "menu": [
         {
             "id": 1,
-            "text": "Profile",
+            "text": "My profile",
             "icon": "profileIcon"
         },
         
@@ -20,11 +20,16 @@
     ],
     
     "profile": {
-        "title": "Profile"
+        "title": "Profile",
+        "edit": "Edit profile",
+        "send": "Send message",
+        "firstname": "Firstname",
+        "lastname": "Lastname",
+        "status": "Status:",
+        "gender": "Gender:"
     },
 
     "settings": {
-        "title": "Settings",
         "switch": [
             {
                 "id": 1,
@@ -40,9 +45,8 @@
 
     "authorization": {
         "title": "Sign in",
-        "remember": "Remember me",
         "button": "Log in",
-        "noAcc": "Don't have a account?",
+        "noAcc": "Don't have an account?",
         "register": "Register",
         "login": "Login",
         "password": "Password",
@@ -55,6 +59,24 @@
         "login": "Login",
         "password": "Password",
         "firstname": "Firstname",
-        "lastname": "Lastname"
+        "lastname": "Lastname",
+        "gender": "Gender",
+        "man": "Man",
+        "woman": "Woman",
+        "haveAcc": "Have an account?",
+        "authorization": "Sign in" 
+    },
+    "search": "Search",
+    "edit" : {
+        "firstname": "Firstname:",
+        "lastname": "Lastname:",
+        "status": "Status:",
+        "genderTitle": "Gender:",
+        "gender": "Gender",
+        "man": "Man",
+        "woman": "Woman",
+        "nickname": "Nickname:",
+        "button": "Send",
+        "success" : "Data changed successfully"
     }
 }

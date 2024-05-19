@@ -1,46 +1,48 @@
-import React, { useContext } from "react";
-import Navbar from "../Navbar/Navbar"
 import './Menu.css'
-import { UserContext } from "../../providers/UserProvider";
-import { observer } from "mobx-react-lite";
+import React, { useContext } from "react";
+import { useTranslation } from 'react-i18next';
+import { observer } from "mobx-react"
+import { logout } from "../../http/userAPI"
+import { useNavigate } from 'react-router-dom';
+import { DEFAULT_ROUTE, SETTINGS_ROUTE } from '../../utils/consts';
+import { UserContext } from '../../providers/UserProvider';
 
-const Menu = observer( ({
-    menuActive, 
-    changeMenuActive, 
-    translation,
-    profileActive, 
-    changeProfileActive, 
-    settingsActive, 
-    changeSettingsActive,
-}) => {
-    
+const Menu = observer(() => {
+    const [translation] = useTranslation();
+    const navigate = useNavigate();
     const {userStore} = useContext(UserContext)
+    const logOut = async () => {
+        try {
+            await logout()
+            userStore.setUserData({})
+            userStore.setProfileUrl({})
+        } catch (error) {
+            alert(error.response?.data?.message)
+        }
+    }
     return(
-        <div className={menuActive ? "menu active" : "menu"} onMouseLeave={() => changeMenuActive(false)}>
-            <div className="content">
-                <div className="content__header">
-                    <div className="content__header--logo" onClick = {() => {}}></div>
-                    <div className="content__header--name">
-                        <p>{userStore.user.firstname}</p>
-                        <p>{userStore.user.lastname}</p>
-                    </div>
-                    <div className="content__header--status">
-                        {userStore.user.status}
-                    </div>
-                </div>
-                <Navbar
-                    translation = {translation}
-                    menuActive = {menuActive}
-                    changeMenuActive = {changeMenuActive}
-                    profileActive = {profileActive}
-                    changeProfileActive = {changeProfileActive}
-                    settingsActive = {settingsActive}
-                    changeSettingsActive = {changeSettingsActive}
-                />
-                <div className="content__copytight">
-                    © И. А. Бабайлов, 2023
-                </div>
-            </div>
+        <div className="menu">
+            <ul className="navbar">
+                { translation('menu', { returnObjects: true }).map((data) =>
+                    <li className= "navbar__item" key = {data.id}>
+                        <div className={"navbar__item--icon " + data.icon}></div>
+                        <button className= "navbar__item--button" onClick={() => {
+                            if (data.id === 1) {
+                                navigate(DEFAULT_ROUTE + userStore.userData.nickname)
+                        } else if ( data.id === 2) {
+                            navigate(SETTINGS_ROUTE)
+                        } else if ( data.id === 3) {
+                            logOut()
+                        }
+                        }}>
+                            {data.text}
+                        </button>
+                    </li>
+                )}
+            </ul>      
+            <div className="menu__copytight">
+                    © И. А. Бабайлов, 2024
+            </div> 
         </div>
     );
 })

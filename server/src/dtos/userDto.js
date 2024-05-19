@@ -1,9 +1,9 @@
 module.exports = class UserDto {
     id;
-    login;
+    nickname;
 
     constructor(model) {
         this.id = model.id
-        this.login = model.login
+        this.nickname = model.nickname
     }
 }

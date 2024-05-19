@@ -1,6 +1,7 @@
 import React from "react";
 import cn from 'classnames'
 import useTheme from "../../hooks/useTheme";
+import "./Layout.css";
 
 const Layout = ({children}) => {
     const { theme } = useTheme()

@@ -1,8 +1,20 @@
 .header{
     height: 50px;
+    width: 100%;
+    display: flex;
+}
+.header__content{
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    margin: 10px 0;
-    gap: 10px;
+    gap: 15px;
+}
+
+.header__content--logo{
+    height: 30px;
+    width: 30px;
+    background: url("../../img/logo.svg")
+}
+.header__content--text{
+    font-family: 'Roboto';
+    font-size: 18px;
 }

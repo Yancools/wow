@@ -1,21 +1,32 @@
-import React from "react";
-import Burger from "../Burger/Burger"
-import Search from "../Search/Search"
 import "./Header.css"
+import Search from "../Search/Search";
+import React from "react"
 
-
-const Header = ({
-        menuActive,
-        changeMenuActive
-}) => {
-    return (
+const Header = () => {
+    return(
         <div className="header">
-            <Burger 
-                menuActive={menuActive} 
-                changeMenuActive = {changeMenuActive}
-            />
-            <Search />
-        </div>
+            {
+                localStorage.getItem("Token") ?
+                <div className="container">
+                <div className="header__content">
+                    <div className="header__content--logo"></div>
+                    <div className="header__content--text">
+                        Corp
+                    </div>
+                    <Search/>   
+                </div>
+                </div>
+                :
+                <div className="container">
+                    <div className="header__content">
+                        <div className="header__content--logo"></div>
+                        <div className="header__content--text">
+                            Corp
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>        
     )
 }
-export default Header
+export default Header;
