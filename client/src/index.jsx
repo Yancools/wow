@@ -5,6 +5,7 @@ import './i18next/i18next'
 import { UserProvider } from './providers/UserProvider';
 import { ThemeProvider } from './providers/ThemeProvider';
 import Layout from './components/Layout/Layout';
+import { CommunicationProvider } from './providers/CommunicationProvider';
 
 const rootElement = document.getElementById('root');
 
@@ -17,9 +18,11 @@ root.render(
     <React.Suspense>
       <ThemeProvider>
         <UserProvider>
-          <Layout>
-            <App />
-          </Layout>
+          <CommunicationProvider>
+            <Layout>
+              <App />
+            </Layout>
+          </CommunicationProvider>
         </UserProvider>
       </ThemeProvider>
     </React.Suspense>

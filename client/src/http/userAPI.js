@@ -1,4 +1,4 @@
-import { CHANGELOGIN_URL, CHANGEPASSWORD_URL, LOGIN_URL, LOGOUT_URL, REFRESH_URL, REGISTRATION_URL, SEARCHUSER_URL, USERDATA_URL } from "../utils/consts";
+import { CHANGEFIRSTNAME_URL, CHANGEGENDER_URL, CHANGELASTNAME_URL, CHANGELOGIN_URL, CHANGENICKNAME_URL, CHANGEPASSWORD_URL, CHANGEPHOTO_URL, CHANGESTATUS_URL, LOGIN_URL, LOGOUT_URL, REFRESH_URL, REGISTRATION_URL, SEARCHUSER_URL, USERDATA_URL } from "../utils/consts";
 import { $host, $authhost } from "./index";
 
 
@@ -36,6 +36,30 @@ export const changeLogin = async (login, newLogin, password) => {
 }
 export const changePassword = async (password, newPassword, confirmNewPassword) => {
     const result = await $authhost.post(CHANGEPASSWORD_URL, {password, newPassword, confirmNewPassword})
+    return result
+}
+export const changeNickname = async (newNickname) => {
+    const result = await $authhost.post(CHANGENICKNAME_URL, {newNickname})
+    return result
+}
+export const changeGender = async (newGender) => {
+    const result = await $authhost.post(CHANGEGENDER_URL, {newGender})
+    return result
+}
+export const changeFirstname = async (newFirstname) => {
+    const result = await $authhost.post(CHANGEFIRSTNAME_URL, {newFirstname})
+    return result
+}
+export const changeLastname = async (newLastname) => {
+    const result = await $authhost.post(CHANGELASTNAME_URL, {newLastname})
+    return result
+}
+export const changePhoto = async (data) => {
+    const result = await $authhost.post(CHANGEPHOTO_URL, data)
+    return result
+}
+export const changeStatus = async (newStatus) => {
+    const result = await $authhost.post(CHANGESTATUS_URL, {newStatus})
     return result
 }
 

@@ -42,7 +42,6 @@ table {
 }
 /* Reset css */
 
-
 :root {
     --black: #000;
     --white: #FFFFFF;
@@ -97,6 +96,24 @@ table {
     background-color: var(--LightTheme--dark);
     color: var(--black);
 }
+.layout.dark .create__footer--input {
+    background-color: var(--DarkTheme--Light);
+    color: var(--white);
+}
+
+.layout.light .create__footer--input {
+    background-color: var(--LightTheme--dark);
+    color: var(--black);
+}
+.layout.dark .create__search {
+    background-color: var(--DarkTheme--Light);
+    color: var(--white);
+}
+
+.layout.light .create__search {
+    background-color: var(--LightTheme--dark);
+    color: var(--black);
+}
 .layout.dark .result {
     background-color: var(--DarkTheme--Light);
     color: var(--white);
@@ -107,31 +124,39 @@ table {
     background-color: var(--LightTheme--Light);
     color: var(--black);
 }
-.layout.dark .result::-webkit-scrollbar-track {
-    background: var(--DarkTheme--Light);
-    border-radius: 10px;
+
+.layout.dark .result::-webkit-scrollbar-track,
+.layout.dark .create__result::-webkit-scrollbar-track,
+.layout.dark .chatlist__content::-webkit-scrollbar-track,
+.layout.dark .chat__content::-webkit-scrollbar-track {
+    background: var(--DarkTheme--Medium);
 }
 
-.layout.light .result::-webkit-scrollbar-track {
+.layout.light .result::-webkit-scrollbar-track,
+.layout.light .create__result::-webkit-scrollbar-track,
+.layout.light .chatlist__content::-webkit-scrollbar-track,
+.layout.light .chat__content::-webkit-scrollbar-track {
     background: var(--LightTheme--Light);
-    border-radius: 10px;
-}
-.layout.dark .result::-webkit-scrollbar-thumb {
-    background-color: var(--DarkTheme--Medium);
-    border: 1px solid var(--DarkTheme--Light);
 }
 
-.layout.light .result::-webkit-scrollbar-thumb {
+.layout.dark .result::-webkit-scrollbar-thumb,
+.layout.dark .create__result::-webkit-scrollbar-thumb,
+.layout.dark .chatlist__content::-webkit-scrollbar-thumb,
+.layout.dark .chat__content::-webkit-scrollbar-thumb{
+    background-color: var(--DarkTheme--Light);
+    border: 1px solid var(--DarkTheme--Medium);
+    border-radius: 10px;
+}
+
+.layout.light .result::-webkit-scrollbar-thumb,
+.layout.light .create__result::-webkit-scrollbar-thumb,
+.layout.light .chatlist__content::-webkit-scrollbar-thumb,
+.layout.light .chat__content::-webkit-scrollbar-thumb{
     background-color: var(--LightTheme--dark);
     border: 1px solid var(--LightTheme--Light);
+    border-radius: 10px;
 }
-
   
-  
-.result::-webkit-scrollbar-thumb {
-    border-radius: 10px; 
-}
-
 .layout.light .auth {
     background-color: var(--LightTheme--Light);
 }
@@ -225,24 +250,80 @@ table {
 .layout.light .settingsIcon {
     background: url("../../img/settingsLight.svg")
 }
+.layout.light .chatsIcon {
+    background: url("../../img/chatLight.svg")
+}
+.layout.dark .chatsIcon {
+    background: url("../../img/chatDark.svg")
+}
 .layout.light .logoutIcon {
     background: url("../../img/logoutLight.svg")
 }
 .layout.dark .logoutIcon {
     background: url("../../img/logoutDark.svg")
 }
+.layout.light .chat__input--label {
+    background: url("../../img/attachLight.svg")
+}
+.layout.dark .chat__input--label {
+    background: url("../../img/attachDark.svg")
+}
+.layout.light .send {
+    background: url("../../img/sendLight.svg")
+}
+.layout.dark .send {
+    background: url("../../img/sendDark.svg")
+}
+.layout.light .add {
+    background: url("../../img/addLight.svg")
+}
+.layout.dark .add {
+    background: url("../../img/addDark.svg")
+}
+.layout.light .back {
+    background: url("../../img/backLight.svg")
+}
+.layout.dark .back {
+    background: url("../../img/backDark.svg")
+}
+.layout.light .photo {
+    background: url("../../img/photoLight.svg")
+}
+.layout.dark .photo {
+    background: url("../../img/photoDark.svg")
+}
+.layout.light .default,
+.layout.dark .default {
+    background: url("../../img/default.svg")
+}
+.layout.dark .selected,
+.layout.light .selected {
+    background: url("../../img/complete.svg");
+}
 .layout.light .profileIcon,
 .layout.dark .profileIcon,
 .layout.light .settingsIcon,
 .layout.dark .logoutIcon,
+.layout.dark .chatsIcon,
+.layout.light .chatsIcon,
+.layout.dark .send,
+.layout.light .send,
+.layout.light .chat__input--label,
+.layout.dark .chat__input--label,
+.layout.light .add,
+.layout.dark .add,
+.layout.light .back,
+.layout.dark .back,
+.layout.light .photo,
+.layout.dark .photo,
+.layout.light .selected,
+.layout.dark .selected,
 .layout.light .logoutIcon,
 .layout.dark .settingsIcon {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
 }
-
-
 
 .layout.dark .content{
     background-color: var(--DarkTheme--Medium);
@@ -289,5 +370,29 @@ table {
     color: var(--white);
 }
 .layout.light .content__item--button {
+    color: var(--black);
+}
+.layout.dark .chatItem:hover{
+    background-color: var(--DarkTheme--dark);
+    transition: 0.5s all;
+}
+.layout.light .chatItem:hover {
+    background-color: var(--LightTheme--dark);
+    transition: 0.5s all;
+}
+.layout.dark .message{
+    background-color: var(--DarkTheme--Light);
+}
+.layout.light .message{
+    background-color: var(--LightTheme--dark);
+}
+
+.layout.dark .chat__input--message{
+    background-color: var(--DarkTheme--Light);
+    color: var(--white);
+}
+
+.layout.light .chat__input--message {
+    background-color: var(--LightTheme--dark);
     color: var(--black);
 }

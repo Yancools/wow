@@ -12,7 +12,8 @@
 .header__content--logo{
     height: 30px;
     width: 30px;
-    background: url("../../img/logo.svg")
+    background: url("../../img/logo.svg");
+    cursor: pointer
 }
 .header__content--text{
     font-family: 'Roboto';

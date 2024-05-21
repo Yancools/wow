@@ -94,7 +94,8 @@ const Chat = database.define('chats', {
         type: DataTypes.STRING,
     },
     photo: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
+        defaultValue: 'default.jpg'
     },
     authorId:{
         type: DataTypes.STRING,

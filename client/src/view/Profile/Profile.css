@@ -11,6 +11,10 @@
     flex-direction: column;
     text-align: center;
 }
+.content__item--buttons{
+    display: flex;
+    flex-direction: column;
+}
 .content__item--button{
     border-radius: 10px;
     height: 50px;

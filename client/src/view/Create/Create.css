@@ -1,0 +1,116 @@
+.create{
+    width: 100%;
+    height: 600px ;
+    display: flex;
+    flex-direction: column;
+}
+.create__header{
+    height: 50px;
+    width: calc(100% - 60px);
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.create__header--title{
+    position: absolute;
+    line-height: 40px;
+    font-size: 36px;
+}
+.create__header--button{
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    position: relative;
+    margin: auto 0 auto auto;
+    width: 30px;
+    height: 30px;
+}
+.create__header--button:hover{
+    transition: 0.3s all;
+    opacity: 0.5;
+}
+.create__search{
+    border: none;
+    margin: 0 auto;
+    width: calc(100% - 80px);
+    height: 30px;
+    border-radius: 10px;
+    padding: 0 10px 0 10px;
+    font-size: 16px;
+}
+.create__search:focus{
+    outline: none;
+}
+.create__result{
+    height: calc(100% - 130px);
+    width: calc(100% - 60px);
+    margin: 0 auto;
+    border-radius: 10px;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+}
+.create__result::-webkit-scrollbar {
+    width: 10px;
+}
+.object{
+    width: 100%;
+    margin: 10px auto;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+.object__photo{
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+.object__content{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.object__content--select{
+    position: relative;
+    cursor: pointer;
+    margin: 0 0 0 auto;
+    width: 30px;
+    height: 30px;
+    border: 1px solid white;
+    border-radius: 50%;
+    background: transparent;
+}
+.create__footer{
+    height: 50px;
+    width: calc(100% - 60px);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.create__footer--input{
+    border: none;
+    width: 100%;
+    height: 30px;
+    border-radius: 10px;
+    padding: 0 10px 0 10px;
+    font-size: 16px;
+}
+.create__footer--input:focus{
+    outline: none;
+}
+.create__footer--send{
+    width: 35px;
+    height: 35px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+.emptySearch{
+    text-align: center;
+    margin: auto 0;
+    font-size: 34px;
+    line-height: 40px;
+}

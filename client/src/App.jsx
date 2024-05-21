@@ -1,5 +1,6 @@
 import React, {useContext, useEffect} from "react";
 import Auth from "./view/Auth/Auth";
+import ChatList, { ChatsLoader } from "./view/ChatList/ChatList";
 import Profile, { ProfileLoader } from "./view/Profile/Profile";
 import Registration from "./view/Registration/Registration";
 import { Navigate, createBrowserRouter, RouterProvider} from 'react-router-dom'
@@ -12,8 +13,10 @@ import Settings from "./view/Settings/Settings";
 import RequireAuth from "./hoc/RequireAuth";
 import WithoutAuth from "./hoc/WithoutAuth";
 import Error from "./view/Error/Error";
-import { AUTHORIZATION_ROUTE, DEFAULT_ROUTE, EDITPROFILE_ROUTE, PROFILE_ROUTE, REGISTRATION_ROUTE, SETTINGS_ROUTE } from "./utils/consts";
+import { AUTHORIZATION_ROUTE, CHATLIST_ROUTE, CHAT_ROUTE, CREATE_ROUTE, DEFAULT_ROUTE, EDITPROFILE_ROUTE, PROFILE_ROUTE, REGISTRATION_ROUTE, SETTINGS_ROUTE } from "./utils/consts";
 import EditProfile from "./view/editProfile/editProfile";
+import Chat, { ChatLoader } from "./view/Chat/Chat";
+import Create from "./view/Create/Create";
 
 const App = observer( () => {
   const {userStore} = useContext(UserContext)
@@ -84,6 +87,26 @@ const App = observer( () => {
       </WithoutAuth>
     },
     {
+      path: CHATLIST_ROUTE,
+      errorElement: <Error/>,
+      loader: ChatsLoader,
+      element:  
+      <RequireAuth>
+        <Header/>
+        <ChatList/>
+      </RequireAuth>
+    },
+    {
+      path: CHAT_ROUTE,
+      errorElement: <Error/>,
+      loader: ChatLoader,
+      element:  
+      <RequireAuth>
+        <Header/>
+        <Chat/>
+      </RequireAuth>
+    },
+    {
       path: REGISTRATION_ROUTE,
       errorElement: <Error/>,
       element:  
@@ -91,6 +114,15 @@ const App = observer( () => {
         <Header/>
         <Registration/> 
       </WithoutAuth>
+    },
+    {
+      path: CREATE_ROUTE,
+      errorElement: <Error/>,
+      element:  
+      <RequireAuth>
+        <Header/>
+        <Create/>
+      </RequireAuth>
     }
   ]);
   return (

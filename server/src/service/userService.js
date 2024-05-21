@@ -186,18 +186,16 @@ class UserService {
         user.photo = fileName
         return user.save();
     }
-
-
-
-
-
-
-
-
-
-
-
-
+    async changeStatus(userId, newStatus) {
+        console.log(newStatus)
+        const user = await User.findOne({
+            where: {
+                id: userId
+            }
+        })
+        user.status = newStatus
+        return user.save();
+    }
 
     async userData(nickname) {
         const userData = await User.findOne({

@@ -5,15 +5,18 @@
             "text": "Мой профиль",
             "icon": "profileIcon"
         },
-        
         {
             "id": 2,
+            "text": "Чаты",
+            "icon": "chatsIcon"
+        },
+        {
+            "id": 3,
             "text": "Настройки",
             "icon": "settingsIcon"
         },
-        
         {
-            "id": 3,
+            "id": 4,
             "text": "Выйти",
             "icon": "logoutIcon"
         }
@@ -77,5 +80,17 @@
         "nickname": "Никнейм:",
         "button": "Отправить",
         "success" : "Данные успешно изменены"
+    },
+    "chatList": {
+        "title": "Список чатов"
+    },
+    "create": {
+        "title": "Создать новый диалог",
+        "input": "Введите название",
+        "empty": "Введите никнейм пользователя"
+    },
+    "error": {
+        "status": "Статус ошибки:",
+        "message": "Сообщиние ошибки:"
     }
 }

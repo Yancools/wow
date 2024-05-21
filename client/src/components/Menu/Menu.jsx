@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { observer } from "mobx-react"
 import { logout } from "../../http/userAPI"
 import { useNavigate } from 'react-router-dom';
-import { DEFAULT_ROUTE, SETTINGS_ROUTE } from '../../utils/consts';
+import { CHATLIST_ROUTE, DEFAULT_ROUTE, SETTINGS_ROUTE } from '../../utils/consts';
 import { UserContext } from '../../providers/UserProvider';
 
 const Menu = observer(() => {
@@ -24,19 +24,21 @@ const Menu = observer(() => {
         <div className="menu">
             <ul className="navbar">
                 { translation('menu', { returnObjects: true }).map((data) =>
-                    <li className= "navbar__item" key = {data.id}>
-                        <div className={"navbar__item--icon " + data.icon}></div>
-                        <button className= "navbar__item--button" onClick={() => {
-                            if (data.id === 1) {
-                                navigate(DEFAULT_ROUTE + userStore.userData.nickname)
+                    <li className= "navbar__item" key = {data.id} onClick={() => {
+                        if (data.id === 1) {
+                            navigate(DEFAULT_ROUTE + userStore.userData.nickname)
                         } else if ( data.id === 2) {
-                            navigate(SETTINGS_ROUTE)
+                            navigate(CHATLIST_ROUTE)
                         } else if ( data.id === 3) {
+                            navigate(SETTINGS_ROUTE)
+                        } else if(data.id === 4){
                             logOut()
                         }
-                        }}>
+                    }}>
+                        <div className={"navbar__item--icon " + data.icon}></div>
+                        <p className= "navbar__item--text" >
                             {data.text}
-                        </button>
+                        </p>
                     </li>
                 )}
             </ul>      

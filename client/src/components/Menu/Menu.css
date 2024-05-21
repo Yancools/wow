@@ -20,12 +20,14 @@
     border-radius: 10px;
     display: flex;
     gap: 10px;
+    cursor: pointer;
+    align-items: center;
 }
 .navbar__item--icon{
     height: 30px;
     width: 30px;
 }
-.navbar__item--button{
+.navbar__item--text{
     cursor: pointer;
     background-color: transparent;
     border: none;
@@ -35,10 +37,10 @@
 }
 .menu__copytight{
     display: flex;
-    width: 80%;
     margin: 0 auto;
     line-height: 40px;
     align-items: center;
+    text-align: center;
     font-family: 'Roboto';
     font-size: 14px;
 }

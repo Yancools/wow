@@ -13,7 +13,7 @@ router.post('/createChat',
 router.post('/createConversation',
     authMiddleware, 
     body('companionsNicknames').isLength({min: 5, max: 16}),
-    body('title').isLength({min: 1, max: 64}),
+    body('title').isLength({min: 1, max: 16}),
     communicationController.createConversation
 )
 router.post('/addUserConversation',
@@ -22,11 +22,7 @@ router.post('/addUserConversation',
     body('userNickname').isLength({min: 5, max: 16}),
     communicationController.addUserConversation
 )
-router.post('/leaveConversation',
-    authMiddleware, 
-    body('chatId').notEmpty(),
-    communicationController.leaveConversation
-)
+
 router.post('/deleteUserConversation',
     authMiddleware, 
     body('chatId').notEmpty(),
@@ -36,7 +32,7 @@ router.post('/deleteUserConversation',
 router.post('/editConversationTitle',
     authMiddleware, 
     body('chatId').notEmpty(),
-    body('title').isLength({min: 1, max: 32}),
+    body('title').isLength({min: 1, max: 16}),
     communicationController.editConversationTitle
 )
 router.post('/editConversationPhoto',
@@ -44,13 +40,17 @@ router.post('/editConversationPhoto',
     body('chatId').notEmpty(),
     communicationController.editConversationPhoto
 )
+router.post('/leaveConversation',
+    authMiddleware, 
+    body('chatId').notEmpty(),
+    communicationController.leaveConversation
+)
 router.get('/chatList',
     authMiddleware,
     communicationController.chatList
 )
-router.post('/chat',
+router.get('/chat/:id',
     authMiddleware,
-    body('chatId').notEmpty(),
     communicationController.chat
 )
 
@@ -71,7 +71,6 @@ router.post('/deleteMessage',
 )
 router.post('/editMessage',
     authMiddleware,
-    body('content').notEmpty(),
     body('messageId').notEmpty(),
     communicationController.editMessage
 )

@@ -8,12 +8,12 @@ class communicationController {
         try {
             const errors = validationResult(req)
             if(!errors.isEmpty()){
-                return next(ApiError.badRequest(`Ошибка`, errors.array()))
+                return next(ApiError.badRequest(`Недопустимый никнейм собеседника (от 5 до 16 символов).`, errors.array()))
             }
             const {companionNickname, message} = req.body
             const authorId = req.user.id
-            await communicationService.createChat(companionNickname, authorId, message)
-            return res.status(200).send()
+            const result = await communicationService.createChat(companionNickname, authorId, message)
+            return res.json(result)
         } catch (error) {
             next(error)
         }
@@ -23,12 +23,12 @@ class communicationController {
         try {
             const errors = validationResult(req)
             if(!errors.isEmpty()){
-                return next(ApiError.badRequest(`Ошибка`, errors.array()))
+                return next(ApiError.badRequest(`Недопустимый никнейм собеседников (от 5 до 16 символов) или недопустимое название беседы (от 1 до 16 символов).`, errors.array()))
             }
             const {companionsNicknames, title} = req.body
             const authorId = req.user.id
-            await communicationService.createConversation(companionsNicknames, authorId, title)
-            return res.status(200).send()
+            const result = await communicationService.createConversation(companionsNicknames, authorId, title)
+            return res.json(result)
         } catch (error) {
             next(error)
         }
@@ -40,7 +40,7 @@ class communicationController {
         try {
             const errors = validationResult(req)
             if(!errors.isEmpty()){
-                return next(ApiError.badRequest(`Ошибка`, errors.array()))
+                return next(ApiError.badRequest(`Пустой идентификатор чата или недопустимый никнейм (от 5 до 16 символов).`, errors.array()))
             }
             const userId = req.user.id
             const {userNickname, chatId} = req.body
@@ -56,7 +56,7 @@ class communicationController {
         try {
             const errors = validationResult(req)
             if(!errors.isEmpty()){
-                return next(ApiError.badRequest(`Ошибка`, errors.array()))
+                return next(ApiError.badRequest(`Пустой идентификатор чата или недопустимый никнейм (от 5 до 16 символов).`, errors.array()))
             }
             const userId = req.user.id
             const {userNickname, chatId} = req.body
@@ -70,7 +70,7 @@ class communicationController {
         try {
             const errors = validationResult(req)
             if(!errors.isEmpty()){
-                return next(ApiError.badRequest(`Ошибка`, errors.array()))
+                return next(ApiError.badRequest(`Пустой идентификатор чата или недопустимое название беседы (от 1 до 16 символов).`, errors.array()))
             }
             const userId = req.user.id
             const {title, chatId} = req.body
@@ -84,7 +84,7 @@ class communicationController {
         try {
             const errors = validationResult(req)
             if(!errors.isEmpty()){
-                return next(ApiError.badRequest(`Ошибка`, errors.array()))
+                return next(ApiError.badRequest(`Пустой идентификатор чата.`, errors.array()))
             }
             const userId = req.user.id
             const {chatId} = req.body
@@ -108,7 +108,7 @@ class communicationController {
         try {
             const errors = validationResult(req)
             if(!errors.isEmpty()){
-                return next(ApiError.badRequest(`Ошибка`, errors.array()))
+                return next(ApiError.badRequest(`Пустой идентификатор чата.`, errors.array()))
             }
             const userId = req.user.id
             const {chatId} = req.body
@@ -130,12 +130,8 @@ class communicationController {
     }
     async chat(req, res, next) {
         try {
-            const errors = validationResult(req)
-            if(!errors.isEmpty()){
-                return next(ApiError.badRequest(`Ошибка`, errors.array()))
-            }
             const userId = req.user.id
-            const {chatId} = req.body
+            const chatId = req.params
             const chats = await communicationService.chat(chatId, userId)
             return res.json(chats)
         } catch (error) {
@@ -148,7 +144,7 @@ class communicationController {
         try {
             const errors = validationResult(req)
             if(!errors.isEmpty()){
-                return next(ApiError.badRequest(`Ошибка`, errors.array()))
+                return next(ApiError.badRequest(`Пустой идентификатор чата.`, errors.array()))
             }
             const {chatId} = req.body
             await communicationService.deleteChat(chatId)
@@ -161,7 +157,7 @@ class communicationController {
         try {
             const errors = validationResult(req)
             if(!errors.isEmpty()){
-                return next(ApiError.badRequest(`Ошибка`, errors.array()))
+                return next(ApiError.badRequest(`Пустой идентификатор сообщения.`, errors.array()))
             }
             const userId = req.user.id
             const {messageId} = req.body
@@ -175,7 +171,7 @@ class communicationController {
         try {
             const errors = validationResult(req)
             if(!errors.isEmpty()){
-                return next(ApiError.badRequest(`Ошибка`, errors.array()))
+                return next(ApiError.badRequest(`Пустой идентификатор сообщения.`, errors.array()))
             }
             const userId = req.user.id
             const {content, messageId} = req.body
@@ -189,18 +185,25 @@ class communicationController {
         try {
             const errors = validationResult(req)
             if(!errors.isEmpty()){
-                return next(ApiError.badRequest(`Ошибка`, errors.array()))
+                return next(ApiError.badRequest(`Пустой идентификатор сообщения.`, errors.array()))
             }
             const userId = req.user.id
             const {content, chatId} = req.body
-            const {file} = req.files
-            const title = file.name.lastIndexOf('.');
-            const fileType = file.name.substring(title + 1);
-            let fileName = uuid.v4() + `.${fileType}`
-            file.mv(path.resolve(__dirname, '..', 'static', fileName))
-
-            await communicationService.createMessage(content, userId, chatId, fileName)
-            return res.status(200).send()
+            try {
+                const {file} = req.files
+                if(!file && !content){
+                    return next(ApiError.badRequest('Сообщение не может быть пустым.'))
+                }
+                const title = file.name.lastIndexOf('.');
+                const fileType = file.name.substring(title + 1);
+                let fileName = uuid.v4() + `.${fileType}`
+                file.mv(path.resolve(__dirname, '..', 'static', fileName))
+                await communicationService.createMessage(content, userId, chatId, fileName)
+                return res.status(200).send()
+            } catch (error) {
+                await communicationService.createMessage(content, userId, chatId)
+                return res.status(200).send()
+            }
         } catch (error) {
             next(error)
         }

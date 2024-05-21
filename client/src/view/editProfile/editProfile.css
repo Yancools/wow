@@ -1,9 +1,24 @@
 .edit__logo{
-    margin: 25px auto 0 auto;
+    margin: 25px auto auto auto;
     width: 150px;
     height: 150px;
     border-radius: 50%;
     cursor: pointer;
+}
+.edit__logo--input{
+    display: none;
+}
+.edit__logo--label{
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+    position: relative;
+    margin: -25px -100px 0 0;
+}
+.edit__logo--label:hover{
+    height: 40px;
+    width: 40px;
+    margin: -30px -95px -5px 5px;
 }
 .edit__row{
     margin: 25px auto 0 auto;
@@ -13,8 +28,10 @@
     text-align: right;
 }
 .edit__row--label{
+    margin: 0 0 0 auto;
+    text-align: left;
     font-size: 16px;
-    width: 30%;
+    width: 75px;
 }
 .edit__row--input{
     margin: 0 auto 0 15px;

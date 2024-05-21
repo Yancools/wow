@@ -5,15 +5,18 @@
             "text": "My profile",
             "icon": "profileIcon"
         },
-        
         {
             "id": 2,
+            "text": "Chats",
+            "icon": "chatsIcon"
+        },
+        {
+            "id": 3,
             "text": "Settings",
             "icon": "settingsIcon"
         },
-        
         {
-            "id": 3,
+            "id": 4,
             "text": "Logout",
             "icon": "logoutIcon"
         }
@@ -78,5 +81,17 @@
         "nickname": "Nickname:",
         "button": "Send",
         "success" : "Data changed successfully"
+    },
+    "chatList": {
+        "title": "ChatList"
+    },
+    "create": {
+        "title": "Create new dialog",
+        "input": "Enter the title",
+        "empty": "Enter user nickname"
+    },
+    "error": {
+        "status": "Status error:",
+        "message": "Message erro:r"
     }
 }

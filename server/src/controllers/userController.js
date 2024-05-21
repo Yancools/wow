@@ -59,8 +59,8 @@ class UserController {
         try {
             const nick = req.params
             const userData = await userService.userData(nick)
-            const {firstname, lastname, nickname, gender, photo, status} = userData
-            return res.json({firstname, lastname, nickname, gender, photo , status})
+            const {firstname, lastname, nickname, gender, photo, status, id} = userData
+            return res.json({firstname, lastname, nickname, gender, photo , status, id})
         } catch (error) {
             next(error)
         }
@@ -101,6 +101,20 @@ class UserController {
             const userId = req.user.id
             const {newNickname} = req.body
             await userService.changeNickname(userId, newNickname.toLowerCase())
+            return res.status(200).send()
+        } catch (error) {
+            next(error)
+        }
+    }
+    async changeStatus(req, res, next) {
+        try {
+            const errors = validationResult(req)
+            if(!errors.isEmpty()){
+                return next(ApiError.badRequest(`Недопустимая длина статуса`, errors.array()))
+            }
+            const userId = req.user.id
+            const {newStatus} = req.body
+            await userService.changeStatus(userId, newStatus)
             return res.status(200).send()
         } catch (error) {
             next(error)

@@ -59,6 +59,11 @@ router.post('/changeLastname',
     authMiddleware, 
     userController.changeLastname
 )
+router.post('/changeStatus', 
+    body('newStatus').isLength({min: 1, max: 32}), 
+    authMiddleware, 
+    userController.changeStatus
+)
 router.post('/changePhoto', 
     authMiddleware, 
     userController.changePhoto

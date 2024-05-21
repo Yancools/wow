@@ -5,19 +5,44 @@ import { SERVER_API } from "../../utils/consts";
 import { UserContext } from "../../providers/UserProvider";
 import { useTranslation } from "react-i18next";
 import { observer } from 'mobx-react';
+import { changeFirstname, changeGender, changeLastname, changeNickname, changePhoto, changeStatus, userData } from '../../http/userAPI';
 
 const EditProfile = observer(() => {
     const [translation] = useTranslation();
     const {userStore} = useContext(UserContext)
-    const [firstname, setFirstname] = useState(userStore.userData.firstname);
-    const [lastname, setLastname] = useState(userStore.userData.lastname);
-    const [gender, setGender] = useState(userStore.userData.gender);
-    const [status, setStatus] = useState(userStore.userData.status);
-    const [photo, setPhoto] = useState(userStore.userData.photo);
-    const [nickname, setNickname] = useState(userStore.userData.nickname);
+    const [firstname, setFirstname] = useState('');
+    const [lastname, setLastname] = useState('');
+    const [gender, setGender] = useState('');
+    const [status, setStatus] = useState('');
+    const [photo, setPhoto] = useState('');
+    const [nickname, setNickname] = useState('');
     const Send = async () => {
         try {
-   
+            if(!firstname && !lastname && !gender && !status && !photo && !nickname){
+                alert('Данные для изменения пустые.')
+            }
+            if(firstname){
+                await changeFirstname(firstname)
+            }
+            if(lastname){
+                await changeLastname(lastname)
+            }
+            if(gender){
+                await changeGender(gender)
+            }
+            if(nickname) {
+                await changeNickname(nickname)
+            }
+            if(status) {
+                await changeStatus(status)
+            }
+            if(photo) {
+                const data = new FormData();
+                data.append('photo', photo);
+                await changePhoto(data)
+            }
+            const result = await userData(userStore?.userData?.nickname)
+            userStore.setUserData(result)
         } catch (error) {
             alert(error.response?.data?.message)
         }
@@ -26,14 +51,12 @@ const EditProfile = observer(() => {
         <div className="container">
             <div className="section">
                 <Menu/>
-                <div className="content">
+                <form className="content">
                     <img className="edit__logo" src={SERVER_API + userStore.userData?.photo} alt=""/>
-                    <form action="">
-                        <input type="file" 
-                            onChange={ e => setPhoto(e.target.files[0])}
-                        />
-                    </form>
-                    
+                    <input id="photo" type="file" className="edit__logo--input"
+                        onChange={ e => setPhoto(e.target.files[0])}
+                    />
+                    <label htmlFor="photo" className="edit__logo--label photo" />
                     <div className="edit__row">
                         <div className="edit__row--label">
                             {translation("edit.firstname")}
@@ -77,7 +100,7 @@ const EditProfile = observer(() => {
                     <button className="edit__button" onClick={Send}>
                         {translation("edit.button")}
                     </button>
-                </div>
+                </form>
             </div>
         </div>
     )

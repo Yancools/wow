@@ -20,7 +20,7 @@ class CommunicationService {
             }
         })
         if(candidate){
-            throw ApiError.badRequest('Такой чат уже создан.')
+            return candidate.dataValues.id
         }
         const authorData = await User.findOne({
             where: {
@@ -46,7 +46,7 @@ class CommunicationService {
         if(!result) {
             throw ApiError.badRequest('Не удалось добавить чат в список чатов.')
         }
-        return true
+        return chat.id
     }
 
     async createChat(companionNickname, authorId) {
@@ -70,14 +70,20 @@ class CommunicationService {
         authorChats.forEach(result => {
             arr.push(result.dataValues.chatId)
         })
-        const candidate = await ChatList.findAll({
-            where: {
-                chatId: {[Op.in] : arr},
-                userId: companionData.id
+        const candidate = await Chat.findOne({
+            where : {
+                id: {[Op.in] : arr},
+                private: true
+            },
+            include:{
+                model: ChatList,
+                where: {
+                    userId: companionData.id
+                }
             }
         })
-        if(candidate.length !== 0){
-            throw ApiError.badRequest('Такой чат уже создан.')
+        if(candidate){
+            return candidate.dataValues.id
         }
         const authorData = await User.findOne({
             where: {
@@ -101,12 +107,11 @@ class CommunicationService {
         if(!authorChatList || !companionChatList || !chat) {
             throw ApiError.badRequest('Не удалось создать чат.')
         }
-        return true
+        return chat.id
     }
 
 
     async createConversation(companionsNicknames, authorId, title) {
-        console.log(title)
         if(!Array.isArray(companionsNicknames)){
             throw ApiError.badRequest('В беседе должно быть как минимум 2 участника помимо создателя.')
         }
@@ -120,7 +125,7 @@ class CommunicationService {
         }
         companionsNicknames.forEach(result => {
             if(result === authorData.nickname){
-                throw ApiError.badRequest('Автор чата уже является участником чата, удалите его из списка приглашенных пользователей чата.')
+                throw ApiError.badRequest('Автор чата уже автоматически становится его участником, пожалуйста, удалите себя из списка приглашенных пользователей.')
             }
         })
         const conversation = await Chat.create({
@@ -147,7 +152,7 @@ class CommunicationService {
                 userId: companionData.id,
             })
         }
-        return true
+        return conversation.id
     }
 
 
@@ -293,7 +298,7 @@ class CommunicationService {
     }
     async chatList(id) {
         const chatsData = await ChatList.findAll({
-            order: [['updatedAt', 'DESC']],
+            order: [['updatedAt', 'ASC']],
             where: {
                 userId : id
             }
@@ -314,9 +319,9 @@ class CommunicationService {
                 where: {
                     id: chatId[i]
                 },
-                attributes:['title', 'photo', 'private']
+                attributes:['id', 'title', 'photo', 'private']
             })
-            if((!chat.dataValues.title || !chat.dataValues.photo) && chat.dataValues.private === true){
+            if(chat.dataValues.private === true && chat.dataValues.title != 'Избранное'){
                 const userId = await ChatList.findOne({
                     where: {
                         chatId: chatId[i],
@@ -335,18 +340,14 @@ class CommunicationService {
                         id: userId.dataValues.userId
                     }
                 })
-                if(!chat.dataValues.title){
-                    chat.dataValues.title = userData.dataValues.firstname + ' ' + userData.dataValues.lastname
-                }
-                if(!chat.dataValues.photo){
-                    chat.dataValues.photo = userData.dataValues.photo
-                }
+                chat.dataValues.title = userData.dataValues.firstname + ' ' + userData.dataValues.lastname
+                chat.dataValues.photo = userData.dataValues.photo
             }
             const message = await Message.findOne({
                 where:{
                     id: lastMessageId.dataValues.lastMessageId
                 },
-                attributes:['content', 'time', 'date', 'isRead']
+                attributes:['content', 'time', 'date', 'isRead', 'file']
             })
             result.push({chat, message})
         }
@@ -355,7 +356,7 @@ class CommunicationService {
     async chat(chatId, userId) {
         const userInChat = await ChatList.findOne({
             where:{
-                chatId: chatId,
+                chatId: chatId.id,
                 userId: userId
             }
         })
@@ -365,7 +366,7 @@ class CommunicationService {
         const messageData = await Message.findAll({
             order: [['createdAt', 'ASC']],
             where: {
-                chatId : chatId
+                chatId : chatId.id
             },
             attributes: ['content', 'userId', 'isRead', 'time', 'date']
         })
@@ -376,7 +377,7 @@ class CommunicationService {
         const messages = await Message.findAll({
             order: [['createdAt', 'ASC']],
             where: {
-                chatId : chatId
+                chatId : chatId.id
             },
             include:{
                 model: User,
@@ -385,9 +386,46 @@ class CommunicationService {
                 },
                 attributes: ['firstname', 'lastname', 'photo', 'nickname']
             },
-            attributes: ['content', 'isRead', 'time', 'date', 'file']
+            attributes: ['id', 'content', 'isRead', 'time', 'date', 'file']
         })
-        return messages
+        const chat = await Chat.findOne({
+            where: {
+                id: chatId.id
+            },
+            attributes:['id', 'title', 'photo', 'private']
+        })
+        let nickname;
+        if(chat.dataValues.private === true && chat.dataValues.title != 'Избранное'){
+            const companionId = await ChatList.findOne({
+                where: {
+                    chatId: chatId.id,
+                    userId: {[Op.not]: userId}
+                },
+                
+                include:{
+                    model: Chat,
+                    where:{
+                        id: chatId.id,
+                        private: true
+                    },
+                    attributes:[]
+                },
+                attributes:['userId']
+            })
+            const userData = await User.findOne({
+                where:{
+                    id: companionId.dataValues.userId
+                }
+            })
+            nickname = userData.dataValues.nickname
+            chat.dataValues.title = userData.dataValues.firstname + ' ' + userData.dataValues.lastname
+            chat.dataValues.photo = userData.dataValues.photo
+        }
+        const title = chat.dataValues.title
+        const photo = chat.dataValues.photo
+        const id = chat.dataValues.id
+        const isPrivate = chat.dataValues.private
+        return {messages, title, photo, nickname, id, isPrivate}
     }
     async deleteChat(chatId){
         const messages = await Message.findAll({
