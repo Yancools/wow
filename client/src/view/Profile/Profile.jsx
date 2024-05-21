@@ -62,7 +62,7 @@ const Profile = observer(() => {
 export const ProfileLoader = async ({params}) => {
     const res = await userData(params.nickname)
     if (res?.response?.status === 400){
-        throw new Response('Page is not found...', {status: 404})
+        throw new Response(res?.response?.data?.message, {status: 404})
     }
     return res
 }

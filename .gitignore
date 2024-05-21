@@ -4,7 +4,10 @@
 
 # testing
 /coverage
-/server/src/static/
+/server/src/static/*
+!favorites.svg
+!default.svg
+
 # production
 /build
 

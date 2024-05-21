@@ -7,7 +7,7 @@ const Op = sequelize.Op;
 class CommunicationService {
     async favorites(userId) {
         const title = 'Избранное'
-        const photo = 'favorites.jpg'
+        const photo = 'favorites.svg'
         const candidate = await Chat.findOne({
             where: {
                 title: title

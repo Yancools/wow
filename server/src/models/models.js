@@ -44,7 +44,7 @@ const User = database.define('users', {
     },
     photo: {
         type: DataTypes.STRING,
-        defaultValue: 'default.jpg'
+        defaultValue: 'default.svg'
     },
     gender: {
         type: DataTypes.STRING,
@@ -95,7 +95,7 @@ const Chat = database.define('chats', {
     },
     photo: {
         type: DataTypes.STRING,
-        defaultValue: 'default.jpg'
+        defaultValue: 'default.svg'
     },
     authorId:{
         type: DataTypes.STRING,
